@@ -1,0 +1,23 @@
+From 51de8bbe4203a4e2431494d431c5a99fc3b089bc Mon Sep 17 00:00:00 2001
+From: Kaiza <kaizas22@gmail.com>
+Date: Mon, 15 Apr 2019 20:51:01 +0200
+Subject: [PATCH] bootchooser: correct path for fw_setenv on target
+
+path fw_setenv -> /sbin/fw_setenv
+---
+ src/bootchooser.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/bootchooser.c b/src/bootchooser.c
+index aea7bdd..076eaa9 100644
+--- a/src/bootchooser.c
++++ b/src/bootchooser.c
+@@ -18,7 +18,7 @@ GQuark r_bootchooser_error_quark(void)
+ #define BAREBOX_STATE_ATTEMPTS_PRIMARY	3
+ #define BAREBOX_STATE_DEFAULT_PRIORITY	10
+ #define BAREBOX_STATE_PRIORITY_PRIMARY	20
+-#define UBOOT_FWSETENV_NAME "fw_setenv"
++#define UBOOT_FWSETENV_NAME "/sbin/fw_setenv"
+ #define UBOOT_FWPRINTENV_NAME "fw_printenv"
+ #define UBOOT_DEFAULT_ATTEMPTS		"3"
+ #define UBOOT_ATTEMPTS_PRIMARY		"3"
