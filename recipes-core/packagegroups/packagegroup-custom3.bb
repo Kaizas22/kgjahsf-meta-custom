@@ -12,4 +12,6 @@ PACKAGES = "\
 RDEPENDS_packagegroup-custom3-utils = "\
     rauc \
     dbus \
+    pciutils \
+    e2fsprogs \
    "

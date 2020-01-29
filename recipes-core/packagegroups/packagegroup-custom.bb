@@ -16,7 +16,16 @@ PACKAGES = "\
 
 SUMMARY_packagegroup-custom-base = ""
 RDEPENDS_packagegroup-custom-base = "\
-    ${@bb.utils.contains("TARGET_FEATURES", "utils", "packagegroup-custom-utils", "",d)} \
+    vim \
+    nano \
+    bash \
+    tar \
+    coreutils \
+    strongswan \
+    git \
+    tzdata \
+    libpcap \
+    nss-myhostname \
    "
 
 SUMMARY_packagegroup-custom-utils = ""

@@ -1,0 +1,23 @@
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "2"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  /home/kaiza/yocto/poky/meta \
+  /home/kaiza/yocto/poky/meta-poky \
+  /home/kaiza/yocto/poky/meta-yocto-bsp \
+  /home/kaiza/yocto/meta-openembedded/meta-python \
+  /home/kaiza/yocto/meta-openembedded/meta-networking \
+  /home/kaiza/yocto/meta-openembedded/meta-webserver \
+  /home/kaiza/yocto/meta-openembedded/meta-perl \
+  /home/kaiza/yocto/meta-openembedded/meta-filesystems \
+  /home/kaiza/yocto/meta-openembedded/meta-oe \
+  /home/kaiza/yocto/meta-security/meta-tpm \
+  /home/kaiza/yocto/meta-rauc \
+  /home/kaiza/yocto/meta-mingw \
+  /home/kaiza/yocto/meta-raspberrypi \
+  /home/kaiza/yocto/meta-custom \
+  "
