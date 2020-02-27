@@ -1,0 +1,25 @@
+diff --git a/src/CmdlineHandler.cpp b/src/CmdlineHandler.cpp
+index dfbb217..487b182 100644
+--- a/src/CmdlineHandler.cpp
++++ b/src/CmdlineHandler.cpp
+@@ -94,13 +94,13 @@ int CmdlineHandler::CreateStart(int argc, char** argv)
+     copyrights = FileManager::GetInstance().GetCopyrightMap("db/");
+ 
+     if(LicenseManifest::CreateLicenses(copyrights, packages) == -1)
+-	{
+-    std::cout << "License summary incomplete." << std::endl;
+-	}
+-	else
+-	{
+-		std::cout << "ERROR: License summary successfully created." << std::endl;
+-	}
++    {
++    std::cout << "ERROR: License summary incomplete." << std::endl;
++    }
++    else
++    {
++        std::cout << "License summary successfully created." << std::endl;
++    }
+     return(0);
+ }
+ 

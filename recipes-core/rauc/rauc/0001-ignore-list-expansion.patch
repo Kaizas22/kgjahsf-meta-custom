@@ -1,0 +1,13 @@
+diff --git a/src/LicenseManifest.cpp b/src/LicenseManifest.cpp
+index 326712e..52e5435 100644
+--- a/src/LicenseManifest.cpp
++++ b/src/LicenseManifest.cpp
+@@ -227,7 +227,7 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+     {
+          for(auto pkg : packages)
+         {
+-			if(pkg.first.find("packagegroup") == 0 || pkg.first.find("kernel-module") == 0)
++			if(pkg.first.find("packagegroup") == 0 || pkg.first.find("kernel-module") == 0 || pkg.first.find("locale-base") == 0)
+ 			{
+ 				packages.erase (pkg.first);
+ 				ignoredPackages++;

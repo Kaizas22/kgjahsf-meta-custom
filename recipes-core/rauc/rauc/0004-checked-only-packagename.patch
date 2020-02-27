@@ -1,0 +1,67 @@
+diff --git a/src/LicenseManifest.cpp b/src/LicenseManifest.cpp
+index be96ef3..bfed10d 100644
+--- a/src/LicenseManifest.cpp
++++ b/src/LicenseManifest.cpp
+@@ -198,25 +198,29 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+         print = false;
+         for(auto cpkg : copyrightPackages)
+         {
+-            if(!print && packages.find(cpkg.first)->second == copyright.second)
++            if(copyright.second == packages.find(cpkg.first)->second)
+             {
+-                // Header
+-                LicenseManifest::WriteLine(targetPath, copyright.first + ":");
+-                LicenseManifest::WriteLine(targetPath, "================================================================================\n");
++                if(!print)
++                {
++                    // Header
++                    LicenseManifest::WriteLine(targetPath, copyright.first + ":");
++                    LicenseManifest::WriteLine(targetPath, "================================================================================\n");
++
++                    // Copyright
++                    LicenseManifest::WriteInFile(targetPath, copy.GetCopyrights());
++                    LicenseManifest::WriteLine(targetPath, "\n");
+ 
+-                // Copyright
+-                LicenseManifest::WriteInFile(targetPath, copy.GetCopyrights());
+-                LicenseManifest::WriteLine(targetPath, "\n");
++                    // License
++                    filename = tmpPath + cpkg.first + "_" + copyright.second + ".lic";
++                    LicenseManifest::CopyText(filename, targetPath);
+ 
+-                // License
+-                filename = tmpPath + cpkg.first + "_" + copyright.second + ".lic";
+-                LicenseManifest::CopyText(filename, targetPath);
++                    // Footer
++                    LicenseManifest::WriteLine(targetPath, "\n\n");
+ 
+-                // Footer
+-                LicenseManifest::WriteLine(targetPath, "\n\n");
+-                print = true;
++                    print = true;
++                }
++                packages.erase(cpkg.first);
+             }
+-            packages.erase(cpkg.first);
+         }
+     }
+     // Check if package is on the ignore list
+@@ -225,12 +229,12 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+     {
+          for(auto pkg : packages)
+         {
+-			if(pkg.first.find("packagegroup") == 0 || pkg.first.find("kernel-module") == 0 || pkg.first.find("locale-base") == 0)
+-			{
+-				packages.erase (pkg.first);
+-				ignoredPackages++;
+-			}
+-		}
++            if(pkg.first.find("packagegroup") == 0 || pkg.first.find("kernel-module") == 0 || pkg.first.find("locale-base") == 0)
++            {
++                packages.erase (pkg.first);
++                ignoredPackages++;
++            }
++        }
+     }
+     // List packages with missing copyright file
+     if(packages.size() > 0)

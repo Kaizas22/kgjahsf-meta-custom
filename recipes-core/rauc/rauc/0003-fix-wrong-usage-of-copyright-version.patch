@@ -1,0 +1,22 @@
+diff --git a/src/LicenseManifest.cpp b/src/LicenseManifest.cpp
+index dee4e8d..be96ef3 100644
+--- a/src/LicenseManifest.cpp
++++ b/src/LicenseManifest.cpp
+@@ -198,7 +198,7 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+         print = false;
+         for(auto cpkg : copyrightPackages)
+         {
+-            if(!print && packages.find(cpkg.first)->second == cpkg.second)
++            if(!print && packages.find(cpkg.first)->second == copyright.second)
+             {
+                 // Header
+                 LicenseManifest::WriteLine(targetPath, copyright.first + ":");
+@@ -209,7 +209,7 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+                 LicenseManifest::WriteLine(targetPath, "\n");
+ 
+                 // License
+-                filename = tmpPath + cpkg.first + "_" + cpkg.second + ".lic";
++                filename = tmpPath + cpkg.first + "_" + copyright.second + ".lic";
+                 LicenseManifest::CopyText(filename, targetPath);
+ 
+                 // Footer

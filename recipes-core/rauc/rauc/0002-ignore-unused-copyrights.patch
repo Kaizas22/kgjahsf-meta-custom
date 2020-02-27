@@ -1,0 +1,74 @@
+diff --git a/include/CopyrightHolders.hpp b/include/CopyrightHolders.hpp
+index 9b690f2..0d74c28 100644
+--- a/include/CopyrightHolders.hpp
++++ b/include/CopyrightHolders.hpp
+@@ -38,8 +38,6 @@ public: // setter/getter operations
+ 
+ public: // operations
+     void LoadFile();
+-    void ClearCopyrights();
+-    void ClearPackages();
+ 
+ protected: // operations
+ 
+diff --git a/src/CopyrightHolders.cpp b/src/CopyrightHolders.cpp
+index 5ebc277..fc6961c 100644
+--- a/src/CopyrightHolders.cpp
++++ b/src/CopyrightHolders.cpp
+@@ -13,16 +13,6 @@
+ 
+ using namespace rapidjson;
+ 
+-void CopyrightHolders::ClearCopyrights()
+-{
+-    this->copyrights.clear();
+-}
+-
+-void CopyrightHolders::ClearPackages()
+-{
+-    this->packages.clear();
+-}
+-
+ std::set<std::string> CopyrightHolders::GetCopyrights() const
+ {
+     return(this->copyrights);
+@@ -93,6 +83,7 @@ void CopyrightHolders::LoadFile()
+ 
+     if(pkg.IsArray())
+     {
++        packages.clear();
+         for(SizeType i = 0; i < pkg.Size(); i++)
+         {
+             packages.insert(std::make_pair(pkg[i]["name"].GetString(), pkg[i]["version"].GetString()));
+@@ -107,6 +98,7 @@ void CopyrightHolders::LoadFile()
+ 
+     if(copyright.IsArray())
+     {
++        copyrights.clear();
+         for(SizeType i = 0; i < copyright.Size(); i++)
+         {
+             copyrights.insert(copyright[i].GetString());
+diff --git a/src/LicenseManifest.cpp b/src/LicenseManifest.cpp
+index 52e5435..dee4e8d 100644
+--- a/src/LicenseManifest.cpp
++++ b/src/LicenseManifest.cpp
+@@ -207,7 +207,6 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+                 // Copyright
+                 LicenseManifest::WriteInFile(targetPath, copy.GetCopyrights());
+                 LicenseManifest::WriteLine(targetPath, "\n");
+-                copy.ClearCopyrights();
+ 
+                 // License
+                 filename = tmpPath + cpkg.first + "_" + cpkg.second + ".lic";
+@@ -215,10 +214,9 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+ 
+                 // Footer
+                 LicenseManifest::WriteLine(targetPath, "\n\n");
+-                copy.ClearPackages();
+                 print = true;
+             }
+-            packages.erase (cpkg.first);
++            packages.erase(cpkg.first);
+         }
+     }
+     // Check if package is on the ignore list
