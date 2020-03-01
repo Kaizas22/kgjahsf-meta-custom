@@ -1,0 +1,13 @@
+diff --git a/src/CmdlineHandler.cpp b/src/CmdlineHandler.cpp
+index 487b182..96141c6 100644
+--- a/src/CmdlineHandler.cpp
++++ b/src/CmdlineHandler.cpp
+@@ -95,7 +95,7 @@ int CmdlineHandler::CreateStart(int argc, char** argv)
+ 
+     if(LicenseManifest::CreateLicenses(copyrights, packages) == -1)
+     {
+-    std::cout << "ERROR: License summary incomplete." << std::endl;
++    std::cout << "\033[1;31mERROR: \033[0;31mLicense summary incomplete.\033[0m" << std::endl;
+     }
+     else
+     {

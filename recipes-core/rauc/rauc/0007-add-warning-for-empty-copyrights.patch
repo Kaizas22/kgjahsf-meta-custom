@@ -1,0 +1,15 @@
+diff --git a/src/LicenseManifest.cpp b/src/LicenseManifest.cpp
+index bfed10d..d35fb04 100644
+--- a/src/LicenseManifest.cpp
++++ b/src/LicenseManifest.cpp
+@@ -198,6 +198,10 @@ int LicenseManifest::CreateLicenses(std::map<std::string, std::string> copyright
+         print = false;
+         for(auto cpkg : copyrightPackages)
+         {
++            if(copy.GetCopyrights().size() < 1)
++            {
++                std::cout << "\033[1;33mWARNING: \033[0;33m" << cpkg.first << ": no copyrights in copyright file (*.cr)\033[0m" << std::endl;
++            }
+             if(copyright.second == packages.find(cpkg.first)->second)
+             {
+                 if(!print)
